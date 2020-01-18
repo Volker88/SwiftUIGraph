@@ -18,7 +18,7 @@ extension Double {
     ///
     /// Round Doubles
     ///
-    ///  Call this function to round Doubles to X decimal digits
+    ///  Call this function to round **Double** to X decimal digits
     ///
     /// - Parameter places: decimal digits
     ///

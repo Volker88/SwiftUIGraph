@@ -20,13 +20,16 @@ extension Path {
     ///
     ///  Call this function to draw the graph for an Array of Doubles
     ///
-    ///  - Note: width: specify the width of the graph
+    ///  - Note:
+    ///  **graphPoints**: Array to create the graph
+    ///
+    ///  **graphWidth**: specify the width of the graph
     ///
     /// - Parameters:
     ///   - graphPoints: [Double]
     ///   - graphWidth: Double
     ///
-    /// - Returns: Path
+    /// - Returns: **Path**
     ///
     static func drawPath(graphPoints: [Double], graphWidth: Double) -> Path {
         var path = Path()
