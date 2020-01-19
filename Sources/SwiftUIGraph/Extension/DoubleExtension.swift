@@ -1,6 +1,6 @@
 //
 //  DoubleExtension.swift
-//  SwiftUIChart
+//  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 18.01.20.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  LineGraph.swift
-//  SwiftUIChart
+//  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 30.12.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -19,14 +19,18 @@ class LineGraph: ObservableObject {
     @Published var minValue : Double = -10
     @Published var maxValue : Double = 10
     
+    // MARK: - Constants / Variables
+    let graphHeight: Double
+    
     
     // MARK: - Initializer
-    init(lineGraphSettings: LineGraphSettings) {
+    init(lineGraphSettings: LineGraphSettings, graphHeight: Double) {
         self.lineGraphSettings = lineGraphSettings
+        self.graphHeight = graphHeight
     }
     
     
-    // MARK: - Define Constants / Variables
+    // MARK: - Declare Constants / Variables
     let lineGraphSettings: LineGraphSettings
     var lineGraphPointsArray : [Double] = [] {
         didSet {
@@ -53,22 +57,21 @@ class LineGraph: ObservableObject {
     /// - Returns: transformed [Double] array
     ///
     func calculateArray(_array: [Double]) -> [Double] {
-        let dataArray = _array
-        let maxGraphHeight = lineGraphSettings.graphHeight
+        let inputArray = _array
         
-        let dataArrayMaxValue = dataArray.map(abs).max() ?? 10
+        let inputArrayMaxValue = inputArray.map(abs).max() ?? 10
         
-        self.minValue = dataArrayMaxValue * (-1)
-        self.maxValue = dataArrayMaxValue
+        self.minValue = inputArrayMaxValue * (-1)
+        self.maxValue = inputArrayMaxValue
         
-        print("Abs. Max. \(dataArrayMaxValue)")
+        print("Abs. Max. \(inputArrayMaxValue)")
         print("Min. \(minValue)")
         print("Max. \(maxValue)")
-        let scaleFactor = maxGraphHeight / dataArrayMaxValue
+        let scaleFactor = graphHeight / inputArrayMaxValue
         
-        let ar = dataArray.map() { ($0 * scaleFactor / 2).rounded(toPlaces: lineGraphSettings.decimalDigits) }
+        let outputArray = inputArray.map() { ($0 * scaleFactor / 2).rounded(toPlaces: lineGraphSettings.decimalDigits) }
         
-        return (ar)
+        return (outputArray)
     }
 }
 

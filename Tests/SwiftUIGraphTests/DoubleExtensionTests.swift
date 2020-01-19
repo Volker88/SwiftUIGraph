@@ -1,6 +1,6 @@
 //
-//  DoubleExtenstionTests.swift
-//  SwiftUIChart
+//  DoubleExtensionTests.swift
+//  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 30.12.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.

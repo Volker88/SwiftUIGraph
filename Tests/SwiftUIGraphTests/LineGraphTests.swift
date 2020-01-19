@@ -1,6 +1,6 @@
 //
 //  LineGraphTests.swift
-//  SwiftUIChart
+//  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 30.12.19.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -18,14 +18,9 @@ final class LineGraphTests: XCTestCase {
     
     func testLineGraphSettingsStruct() {
         //given
-        let graphWidth : Double = 350.0
-        let graphHeight : Double = 500.0
-        let maxPoints : Int = 50
-        let lineWidth : CGFloat = 2
-        let lineColor : [Color] = [.red, .yellow, .green]
         
         //when
-        let sut = LineGraphSettings(graphWidth: graphWidth, graphHeight: graphHeight, maxPoints: maxPoints, decimalDigits: 3, lineWitdh: lineWidth, lineColor: lineColor, borderColor: .red, borderWidth: 1)
+        let sut = LineGraphSettings(maxPoints: 50, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
         
         //then
         XCTAssertNotNil(sut, "Struct can not be created!")
@@ -33,8 +28,8 @@ final class LineGraphTests: XCTestCase {
     
     func testLineGraphArrayCalculation() {
         //given
-        let lineGraphSettings = LineGraphSettings(graphWidth: 350, graphHeight: 100, maxPoints: 10, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings)
+        let lineGraphSettings = LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 100)
         let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
         
         //when
@@ -47,8 +42,8 @@ final class LineGraphTests: XCTestCase {
     
     func testLineGraphArrayMaxPoints() {
         //given
-        let lineGraphSettings = LineGraphSettings(graphWidth: 350, graphHeight: 100, maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings)
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
         
         //when
@@ -61,11 +56,11 @@ final class LineGraphTests: XCTestCase {
     
     func testLineGraphView() {
         //given
-        let lineGraphSettings = LineGraphSettings(graphWidth: 350, graphHeight: 100, maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], borderColor: .red, borderWidth: 1)
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
         let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
         
         //when
-        let sut = LineGraphView(lineGraphPointsArray: array, lineGraphSettings: lineGraphSettings)
+        let sut = LineGraphView(lineGraphPointsArray: array, lineGraphSettings: lineGraphSettings, graphWidth: 350, graphHeight: 350)
         
         //then
         XCTAssertNotNil(sut.body, "Body not found!")
@@ -73,8 +68,8 @@ final class LineGraphTests: XCTestCase {
     
     func testLineGraphArrayMaxValue() {
         //given
-        let lineGraphSettings = LineGraphSettings(graphWidth: 350, graphHeight: 100, maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings)
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 100]
         
         //when
@@ -86,8 +81,8 @@ final class LineGraphTests: XCTestCase {
     
     func testLineGraphArrayMinValue() {
         //given
-        let lineGraphSettings = LineGraphSettings(graphWidth: 350, graphHeight: 100, maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings)
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 200]
         
         //when
@@ -99,8 +94,8 @@ final class LineGraphTests: XCTestCase {
     
     func testPerformanceOfArrayTransformation() {
         //given
-        let lineGraphSettings = LineGraphSettings(graphWidth: 350, graphHeight: 100, maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings)
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array = Array(stride(from: -1000.0, through: 1000.0, by: 0.1))
         
         //measure

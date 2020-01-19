@@ -1,6 +1,6 @@
 //
 //  LineGraphProtocol.swift
-//  SwiftUIChart
+//  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 19.01.20.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
@@ -9,6 +9,7 @@
 
 //MARK: - Import
 import Foundation
+import SwiftUI
 
 
 //MARK: - Protocol
