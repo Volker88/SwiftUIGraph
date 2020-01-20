@@ -36,7 +36,7 @@ public struct LineGraphView: View {
     private var lineGraphSettings: LineGraphSettings
     private var graphWidth: CGFloat
     private var graphHeight: CGFloat
-
+    
     
     // MARK: - Public Initializer
     public init(lineGraphPointsArray: [Double], lineGraphSettings: LineGraphSettings, graphWidth: CGFloat, graphHeight: CGFloat) {
@@ -53,36 +53,36 @@ public struct LineGraphView: View {
         
         // MARK: - Return
         return HStack(spacing: 3) {
-                VStack {
-                    Group {
-                        Text("\(lineGraph.maxValue, specifier: "%.\(lineGraphSettings.decimalDigits)f")")
-                        Spacer()
-                        Text("0")
-                        Spacer()
-                        Text("\(lineGraph.minValue, specifier: "%.\(lineGraphSettings.decimalDigits)f")")
-                    }
-                    .font(.caption)
-                    .foregroundColor(lineGraphSettings.textColor)
+            VStack {
+                Group {
+                    Text("\(lineGraph.maxValue, specifier: "%.\(lineGraphSettings.decimalDigits)f")")
+                    Spacer()
+                    Text("0")
+                    Spacer()
+                    Text("\(lineGraph.minValue, specifier: "%.\(lineGraphSettings.decimalDigits)f")")
                 }
-                .frame(width: CGFloat(70), height: graphHeight, alignment: .trailing)
-                
-                VStack {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: graphWidth - 70, height: 0.5, alignment: .center)
-                        
-                        Path.drawPath(graphPoints: lineGraph.transformedArray, graphWidth: Double(graphWidth) - 70)
-                            .trim(from: 0, to: 1)
-                            .stroke(LinearGradient(gradient: Gradient(colors: lineGraphSettings.lineColor), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: lineGraphSettings.lineWidth))
-                            .rotationEffect(.degrees(180), anchor: .center)
-                            .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                            .animation(.easeOut(duration: 1.2))
-                            .drawingGroup()
-                    }
-                }
-                .frame(height: graphHeight)
-                .border(lineGraphSettings.borderColor, width: lineGraphSettings.borderWidth)
+                .font(.caption)
+                .foregroundColor(lineGraphSettings.textColor)
             }
+            .frame(width: CGFloat(70), height: graphHeight, alignment: .trailing)
+            
+            VStack {
+                ZStack {
+                    Rectangle()
+                        .frame(width: graphWidth - 70, height: 0.5, alignment: .center)
+                    
+                    Path.drawPath(graphPoints: lineGraph.transformedArray, graphWidth: Double(graphWidth) - 70)
+                        .trim(from: 0, to: 1)
+                        .stroke(LinearGradient(gradient: Gradient(colors: lineGraphSettings.lineColor), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: lineGraphSettings.lineWidth))
+                        .rotationEffect(.degrees(180), anchor: .center)
+                        .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                        .animation(.easeOut(duration: 1.2))
+                        .drawingGroup()
+                }
+            }
+            .frame(height: graphHeight)
+            .border(lineGraphSettings.borderColor, width: lineGraphSettings.borderWidth)
+        }
         .frame(width: graphWidth, height: graphHeight, alignment: .center)
     }
 }
@@ -93,11 +93,9 @@ struct LineGraphView_Previews: PreviewProvider {
     static var previews: some View {
         
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            NavigationView {
-                LineGraphView(lineGraphPointsArray: [-10,-9,-8,0,7,8,9,10], lineGraphSettings: LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWitdh: 1, lineColor: [.red, .green], textColor: .primary, borderColor: .black, borderWidth: 1), graphWidth: 350, graphHeight: 350)
-                    .colorScheme(scheme)
-                    .previewLayout(.sizeThatFits)
-            }
+            LineGraphView(lineGraphPointsArray: [-10,-9,-8,0,7,8,9,10], lineGraphSettings: LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWitdh: 1, lineColor: [.red, .green], textColor: .primary, borderColor: .black, borderWidth: 1), graphWidth: 350, graphHeight: 350)
+                .colorScheme(scheme)
+                .previewLayout(.sizeThatFits)
         }
     }
 }
