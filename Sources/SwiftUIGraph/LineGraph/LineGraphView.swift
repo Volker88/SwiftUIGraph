@@ -71,7 +71,7 @@ public struct LineGraphView: View {
                     Rectangle()
                         .frame(width: graphWidth - 70, height: 0.5, alignment: .center)
                     
-                    Path.drawPath(graphPoints: lineGraph.transformedArray, graphWidth: Double(graphWidth) - 70)
+                    Path.drawPath(graphPoints: lineGraph.transformedArray, graphWidth: Double(graphWidth) - 70, graphHeight: Double(graphHeight))
                         .trim(from: 0, to: 1)
                         .stroke(LinearGradient(gradient: Gradient(colors: lineGraphSettings.lineColor), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: lineGraphSettings.lineWidth))
                         .rotationEffect(.degrees(180), anchor: .center)

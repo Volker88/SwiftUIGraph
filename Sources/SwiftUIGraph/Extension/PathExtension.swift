@@ -28,17 +28,18 @@ extension Path {
     /// - Parameters:
     ///   - graphPoints: [Double]
     ///   - graphWidth: Double
+    ///   - graphHeight: Double
     ///
     /// - Returns: **Path**
     ///
-    static func drawPath(graphPoints: [Double], graphWidth: Double) -> Path {
+    static func drawPath(graphPoints: [Double], graphWidth: Double, graphHeight: Double) -> Path {
         var path = Path()
-        var p1 = CGPoint(x: 0, y: graphPoints[0] + graphPoints.min()! * (-1))
+        var p1 = CGPoint(x: 0, y: graphPoints[0] + (graphHeight / 2))
         path.move(to: p1)
         
         for pointIndex in 1..<graphPoints.count {
             let x = Double(pointIndex) * graphWidth / Double(graphPoints.count)
-            let p2 = CGPoint(x: x, y: graphPoints[pointIndex] + graphPoints.min()! * (-1))
+            let p2 = CGPoint(x: x, y: graphPoints[pointIndex] + (graphHeight / 2))
             path.addLine(to: p2)
             p1 = p2
         }
