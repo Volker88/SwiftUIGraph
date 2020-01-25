@@ -12,17 +12,28 @@ import Foundation
 import SwiftUI
 
 
+//MARK: - Public Protocol
+///
+///    Protocol to add required variables for  LineGraph
+///
+///   **lineGraphSettings:** Graph Customization Settings
+///
+public protocol LineGraphPotocol {
+    var lineGraphSettings: LineGraphSettings { get }
+}
+
+
 // MARK: - Public Struct
 /// LineGraphSettings Struct
 ///
 /// Customize the appearance of the line graph
 ///
-/// - **maxPoints**: Maximum items in the array. In case of dynamic graphs only las *n* values will be kept and shown on the graph
-/// - **decimalDigits**: Limit Decimal digits to *n* digits
-/// - **lineWidth**: Width of the graph line
-/// - **lineColor**: Array of *[Color]* to use one or multiple colors to make the line more colorful
-/// - **borderColor**: Color of the border around the graph
-/// - **borderWidth**: Width of the border around the graph
+/// - `maxPoints`: Maximum items in the array. In case of dynamic graphs only las *n* values will be kept and shown on the graph
+/// - `decimalDigits`: Limit Decimal digits to *n* digits
+/// - `lineWidth`: Width of the graph line
+/// - `lineColor`: Array of `[Color]` to use one or multiple colors to make the line more colorful
+/// - `borderColor`: Color of the border around the graph
+/// - `borderWidth`: Line width of the border around the graph
 ///
 public struct LineGraphSettings {
     
@@ -32,18 +43,14 @@ public struct LineGraphSettings {
     let lineWidth: CGFloat
     let lineColor: [Color]
     let textColor: Color
-    let borderColor: Color
-    let borderWidth: CGFloat
     
     
     // MARK: - Public Initializer
-    public init(maxPoints: Int, decimalDigits: Int, lineWitdh: CGFloat, lineColor: [Color], textColor: Color, borderColor : Color, borderWidth: CGFloat) {
+    public init(maxPoints: Int, decimalDigits: Int, lineWitdh: CGFloat, lineColor: [Color], textColor: Color) {
         self.maxPoints = maxPoints
         self.decimalDigits = decimalDigits
         self.lineWidth = lineWitdh
         self.lineColor = lineColor
         self.textColor = textColor
-        self.borderColor = borderColor
-        self.borderWidth = borderWidth
     }
 }

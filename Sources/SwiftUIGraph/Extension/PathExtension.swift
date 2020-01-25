@@ -20,26 +20,33 @@ extension Path {
     ///
     ///  Call this function to draw the graph for an Array of Doubles
     ///
-    ///  - Note:
-    ///  **graphPoints**: Array to create the graph
-    ///
-    ///  **graphWidth**: specify the width of the graph
-    ///
     /// - Parameters:
-    ///   - graphPoints: [Double]
-    ///   - graphWidth: Double
-    ///   - graphHeight: Double
+    ///   - graphPoints: Array with points to generate the Graph
+    ///   - graphWidth: Width of the Graph to evenly distribute the X-Axis
+    ///   - graphHeight: Graph Height
     ///
-    /// - Returns: **Path**
+    /// - Returns: Path
     ///
     static func drawPath(graphPoints: [Double], graphWidth: Double, graphHeight: Double) -> Path {
         var path = Path()
-        var p1 = CGPoint(x: 0, y: graphPoints[0] + (graphHeight / 2))
+        
+        // Graph Offset
+        var offset = 0.0
+        if graphPoints.min()! > 0.0 {
+            offset = -graphPoints.min()!
+        } else if graphPoints.min()! < 0.0 {
+            offset = abs(graphPoints.min()!)
+        } else {
+            offset = 0.0
+        }
+        
+        // Draw Graph
+        var p1 = CGPoint(x: 5, y: graphPoints[0] + offset)
         path.move(to: p1)
         
         for pointIndex in 1..<graphPoints.count {
             let x = Double(pointIndex) * graphWidth / Double(graphPoints.count)
-            let p2 = CGPoint(x: x, y: graphPoints[pointIndex] + (graphHeight / 2))
+            let p2 = CGPoint(x: x, y: graphPoints[pointIndex] + offset)
             path.addLine(to: p2)
             p1 = p2
         }

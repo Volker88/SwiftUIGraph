@@ -33,9 +33,7 @@ In Xcode 11 got to `File -> Swift Packages -> Add Package Dependency..` and past
 1. Import SwiftUIGraph
 2. Add **LineGraphProtocol** protocol to your SwiftUI View Struct
     * **lineGraphSettings** needs to be added for customizaion of the graph
-    * **lineGraphPointsArray** will contain the data points to generate the array
-    * If the graph should be update dynamically, **lineGraphPointsArray** needs to be defined as **@State var lineGraphPointsArray**
-3. Implement **LineGraphView()** and pass in your **lineGraphSettings** and **lineGraphPointsArray**
+3. Implement **LineGraphView()** and pass in your **lineGraphSettings** and an Array containing the Points to generate the Graph
 
 
 ### Example
@@ -46,7 +44,7 @@ import SwiftUIGraph
 
 struct ContentView: View, LineGraphPotocol {
     @State var lineGraphPointsArray: [Double] = [-10,-5,-5,0,0,5,5,10,5,5,0,0,-5,-5]
-    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 25, decimalDigits: 2, lineWitdh: 2, lineColor: [.red,.yellow,.green], textColor: .primary, borderColor: .primary, borderWidth: 1)
+    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 25, decimalDigits: 2, lineWitdh: 2, lineColor: [.red,.yellow,.green], textColor: .primary)
 
     var body: some View {
         GeometryReader { g in
@@ -62,8 +60,7 @@ struct ContentView: View, LineGraphPotocol {
 * **decimalDigits**: Limit decimal digits to **n** digits
 * **lineWidth**: Width of the graph line
 * **lineColor**: Array of **[Color]** to use one or multiple colors to make the line more colorful
-* **borderColor**: Color of the border around the graph
-* **borderWidth**: Width of the border around the graph
+* **textColor**: Color of the Values
 
 ## Dark Mode
 
