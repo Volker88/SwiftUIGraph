@@ -16,8 +16,12 @@ class LineGraph: ObservableObject {
     
     // MARK: - Published Variables
     @Published var transformedArray: [Double] = []
-    @Published var minValue : Double = -10
-    @Published var maxValue : Double = 10
+    @Published var maxValue : Double = 0
+    @Published var upperQuarterValue : Double = 0
+    @Published var midValue : Double = 0
+    @Published var lowerQuarterValue : Double = 0
+    @Published var minValue : Double = 0
+    
     
     // MARK: - Constants / Variables
     let graphHeight: Double
@@ -52,25 +56,30 @@ class LineGraph: ObservableObject {
     ///
     ///   Calculates the array based on the max. graph height to scale the graph
     ///
-    /// - Parameter _array: [Double]
+    /// - Parameter _array: `[Double]`
     ///
-    /// - Returns: transformed [Double] array
+    /// - Returns: transformed `[Double]` Array
     ///
     func calculateArray(_array: [Double]) -> [Double] {
         let inputArray = _array
         
-        let inputArrayMaxValue = inputArray.map(abs).max() ?? 10
+        self.maxValue = inputArray.max()!
+        self.midValue = (inputArray.max()! + inputArray.min()!) / 2
+        self.minValue = inputArray.min()!
         
-        self.minValue = inputArrayMaxValue * (-1)
-        self.maxValue = inputArrayMaxValue
-        
-        print("Abs. Max. \(inputArrayMaxValue)")
+        self.upperQuarterValue = (maxValue + midValue) / 2
+        self.lowerQuarterValue = (midValue + minValue) / 2
+
         print("Min. \(minValue)")
+        print("Mid. \(midValue)")
         print("Max. \(maxValue)")
-        let scaleFactor = graphHeight / inputArrayMaxValue
+        let scaleFactor = (graphHeight) / (maxValue - minValue)
+        print("Scale: \(scaleFactor)")
+        print("Input: \(inputArray)")
         
-        let outputArray = inputArray.map() { ($0 * scaleFactor / 2).rounded(toPlaces: lineGraphSettings.decimalDigits) }
-        
+        let outputArray = inputArray.map() {
+                ($0 * scaleFactor).rounded(toPlaces: lineGraphSettings.decimalDigits)
+        }
         return (outputArray)
     }
 }

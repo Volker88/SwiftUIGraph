@@ -16,92 +16,172 @@ import SwiftUI
 // MARK: - Final Class
 final class LineGraphTests: XCTestCase {
     
+    //MARK: -  SetUp
+    override func setUp() {
+        
+    }
+
+    
+    // MARK: - TearDown
+    override func tearDown() {
+        
+    }
+    
+    
+    // MARK: - General Tests
     func testLineGraphSettingsStruct() {
-        //given
+        //Given
         
-        //when
-        let sut = LineGraphSettings(maxPoints: 50, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        //When
+        let sut = LineGraphSettings(maxPoints: 50, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
         
-        //then
+        //Then
         XCTAssertNotNil(sut, "Struct can not be created!")
     }
-    
-    func testLineGraphArrayCalculation() {
-        //given
-        let lineGraphSettings = LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 100)
-        let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
-        
-        //when
-        let calculatedArray = sut.calculateArray(_array: array)
-        
-        //then
-        XCTAssertEqual(calculatedArray, [-50.0, -25.0, -25.0, 0.0, 0.0, 25.0, 25.0, 50.0], "Calculation of Array failed")
-        
-    }
-    
-    func testLineGraphArrayMaxPoints() {
-        //given
-        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
-        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
-        let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
-        
-        //when
-        sut.lineGraphPointsArray = array
-        
-        //then
-        XCTAssertEqual(sut.transformedArray.count, lineGraphSettings.maxPoints, "Limiting items in Array to \(lineGraphSettings.maxPoints) failed with \(sut.transformedArray.count) items in Array")
-        
-    }
-    
+ 
     func testLineGraphView() {
-        //given
-        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
         let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
         
-        //when
+        //When
         let sut = LineGraphView(lineGraphPointsArray: array, lineGraphSettings: lineGraphSettings, graphWidth: 350, graphHeight: 350)
         
-        //then
+        //Then
         XCTAssertNotNil(sut.body, "Body not found!")
     }
     
+    
+    // MARK: - Test Array min/mid/max and upper/lower quarter
     func testLineGraphArrayMaxValue() {
-        //given
-        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
         let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 100]
         
-        //when
+        //When
         _ = sut.calculateArray(_array: array)
         
-        //then
-        XCTAssertEqual(sut.maxValue, 150, "Max. Value of the Array is wrong")
+        //Then
+        XCTAssertEqual(sut.maxValue, 100, "Max. Value of the Array is wrong")
     }
     
-    func testLineGraphArrayMinValue() {
-        //given
-        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+    func testLineGraphArrayMidValue() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
         let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 200]
         
-        //when
+        //When
         _ = sut.calculateArray(_array: array)
         
-        //then
-        XCTAssertEqual(sut.minValue, -200, "Min. Value of the Array is wrong")
+        //Then
+        XCTAssertEqual(sut.midValue, 25, "Min. Value of the Array is wrong")
     }
     
-    func testPerformanceOfArrayTransformation() {
-        //given
-        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary, borderColor: .red, borderWidth: 1)
+    func testLineGraphArrayMinValue() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
+        let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 200]
+        
+        //When
+        _ = sut.calculateArray(_array: array)
+        
+        //Then
+        XCTAssertEqual(sut.minValue, -150, "Min. Value of the Array is wrong")
+    }
+    
+    func testLineGraphArrayUpperQuarterValue() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
+        let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 200]
+        
+        //When
+        _ = sut.calculateArray(_array: array)
+        
+        //Then
+        XCTAssertEqual(sut.upperQuarterValue, 112.5, "Min. Value of the Array is wrong")
+    }
+    
+    func testLineGraphArrayLowerQuarterValue() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
+        let array : [Double] = [-150, -50, -50, 0, 0, 50, 50, 200]
+        
+        //When
+        _ = sut.calculateArray(_array: array)
+        
+        //Then
+        XCTAssertEqual(sut.lowerQuarterValue, -62.5, "Min. Value of the Array is wrong")
+    }
+    
+    
+    // MARK: - Array Transformation
+    func testLineGraphArrayCalculation() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 100)
+        let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
+        
+        //When
+        let calculatedArray = sut.calculateArray(_array: array)
+        
+        //Then
+        XCTAssertEqual(calculatedArray, [-50.0, -25.0, -25.0, 0.0, 0.0, 25.0, 25.0, 50.0], "Calculation of Array failed")
+    }
+    
+    func testLineGraphTransformation() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 100)
+        let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
+        
+        //When
+        sut.lineGraphPointsArray = array
+        
+        //Then
+        let result = [-50.0, -25.0, -25.0, 0.0, 0.0, 25.0, 25.0, 50.0]
+        XCTAssertEqual(sut.transformedArray, result, "Transformation of array failed with Result: \(sut.transformedArray)")
+    }
+    
+    func testLineGraphArrayMaxPoints() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
+        let array : [Double] = [-100, -50, -50, 0, 0, 50, 50, 100]
+        
+        //When
+        sut.lineGraphPointsArray = array
+        
+        //Then
+        XCTAssertEqual(sut.transformedArray.count, lineGraphSettings.maxPoints, "Limiting items in Array to \(lineGraphSettings.maxPoints) failed with \(sut.transformedArray.count) items in Array")
+    }
+    
+    
+    // MARK: - Performance Tests
+    func testPerformanceOfArrayCalculation() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 5, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
         let sut = LineGraph(lineGraphSettings: lineGraphSettings, graphHeight: 350)
         let array = Array(stride(from: -1000.0, through: 1000.0, by: 0.1))
         
-        //measure
+        //Measure
         measure {
             _ = sut.calculateArray(_array: array)
         }
+    }
     
+    func testPerformanceOfLineGraphViewGeneration() {
+        //Given
+        let lineGraphSettings = LineGraphSettings(maxPoints: 1000, decimalDigits: 3, lineWitdh: 2, lineColor: [.red, .yellow, .green], textColor: .primary)
+        let array = Array(stride(from: -1000.0, through: 1000.0, by: 0.1))
+        
+        //Measure
+        measure {
+           _ = LineGraphView(lineGraphPointsArray: array, lineGraphSettings: lineGraphSettings, graphWidth: 350, graphHeight: 350)
+        }
     }
 }
