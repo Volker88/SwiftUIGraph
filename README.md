@@ -4,14 +4,16 @@ SwiftUIGraph is a Swift package to display static or dynamic Graphs with SwiftUI
 
 
 
-![SwiftUI Charts](./Resources/lineGraphLight.png "SwiftUI Graph Light")
-
+![SwiftUI Graph](./Resources/lineGraphLight.png "SwiftUI Graph Light")
+![SwiftUI Graph](./Resources/PiGraphLight.png "SwiftUI Graph Ligh")
 
 
 
 ## Supported graphs
 
 * Line Graphs
+* Pi Graph
+* Donut Graph
 
 ## Supported OS
 
@@ -28,8 +30,7 @@ SwiftUIGraph is a Swift package to display static or dynamic Graphs with SwiftUI
 
 In Xcode 11 got to `File -> Swift Packages -> Add Package Dependency..` and paste the package url: `https://github.com/Volker88/SwiftUIGraph`
 
-
-
+# LineGraph
 1. Import SwiftUIGraph
 2. Add **LineGraphProtocol** protocol to your SwiftUI View Struct
     * **lineGraphSettings** needs to be added for customizaion of the graph
@@ -64,4 +65,55 @@ struct ContentView: View, LineGraphPotocol {
 
 ## Dark Mode
 
-![SwiftUI Charts](./Resources/lineGraphDark.png "SwiftUI Graph Dark")
+![SwiftUI Graph](./Resources/lineGraphDark.png "SwiftUI Graph Dark")
+
+
+# PiGraph
+
+## Installation
+
+In Xcode 11 got to `File -> Swift Packages -> Add Package Dependency..` and paste the package url: `https://github.com/Volker88/SwiftUIGraph`
+
+# LineGraph
+1. Import SwiftUIGraph
+3. Implement **LineGraphView()** and pass in your **lineGraphSettings** and an Array containing the Points to generate the Graph
+
+
+### Example
+
+~~~~swift
+import SwiftUI
+import SwiftUIGraph
+
+struct ContentView: View {
+    
+    @State private var redAmount = Double.random(in: 10...100)
+    @State private var greenAmount = Double.random(in: 10...100)
+    @State private var yellowAmount = Double.random(in: 10...100)
+    @State private var blueAmount = Double.random(in: 10...100)
+    @State private var orangeAmount = Double.random(in: 10...100)
+    
+    var data: [PieDataPoint] {
+        [
+            PieDataPoint(id: 1, value: redAmount, valueType: "$", color: .red),
+            PieDataPoint(id: 2, value: greenAmount, valueType: "$", color: .green),
+            PieDataPoint(id: 3, value: yellowAmount, valueType: "$", color: .yellow),
+            PieDataPoint(id: 4, value: blueAmount, valueType: "$", color: .blue),
+            PieDataPoint(id: 5, value: orangeAmount, valueType: "$", color: .orange),
+        ]
+    }
+    
+    var body: some View {
+        VStack {
+            PieGraphView(dataArray: data)
+                .padding()
+            PieGraphView(dataArray: data, lineWidth: 50)
+        }
+    }
+}
+
+~~~~
+
+## Dark Mode
+
+![SwiftUI Graph](./Resources/PiGraphDark.png "SwiftUI Graph Ligh")

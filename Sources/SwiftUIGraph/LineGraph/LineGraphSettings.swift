@@ -8,7 +8,6 @@
 
 
 // MARK: - Import
-import Foundation
 import SwiftUI
 
 
