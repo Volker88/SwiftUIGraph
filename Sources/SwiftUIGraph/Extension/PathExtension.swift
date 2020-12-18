@@ -6,14 +6,12 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Extension
 extension Path {
-    
+
     // MARK: - drawPath
     ///
     /// Draw Path
@@ -29,7 +27,7 @@ extension Path {
     ///
     static func drawPath(graphPoints: [Double], graphWidth: Double, graphHeight: Double) -> Path {
         var path = Path()
-        
+
         // Graph Offset
         var offset = 0.0
         if graphPoints.min()! > 0.0 {
@@ -39,16 +37,16 @@ extension Path {
         } else {
             offset = 0.0
         }
-        
+
         // Draw Graph
-        var p1 = CGPoint(x: 5, y: graphPoints[0] + offset)
-        path.move(to: p1)
-        
+        var point1 = CGPoint(x: 5, y: graphPoints[0] + offset)
+        path.move(to: point1)
+
         for pointIndex in 1..<graphPoints.count {
-            let x = Double(pointIndex) * graphWidth / Double(graphPoints.count)
-            let p2 = CGPoint(x: x, y: graphPoints[pointIndex] + offset)
-            path.addLine(to: p2)
-            p1 = p2
+            let xPoint = Double(pointIndex) * graphWidth / Double(graphPoints.count)
+            let point2 = CGPoint(x: xPoint, y: graphPoints[pointIndex] + offset)
+            path.addLine(to: point2)
+            point1 = point2
         }
         return path
     }

@@ -5,13 +5,12 @@
 //  Created by Volker Schmitt on 19.01.20.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
-
+// swiftlint:disable line_length
 
 // MARK: - Import
 import SwiftUI
 
-
-//MARK: - Public Protocol
+// MARK: - Public Protocol
 ///
 ///    Protocol to add required variables for  LineGraph
 ///
@@ -20,7 +19,6 @@ import SwiftUI
 public protocol LineGraphPotocol {
     var lineGraphSettings: LineGraphSettings { get }
 }
-
 
 // MARK: - Public Struct
 /// LineGraphSettings Struct
@@ -35,20 +33,19 @@ public protocol LineGraphPotocol {
 /// - `borderWidth`: Line width of the border around the graph
 ///
 public struct LineGraphSettings {
-    
+
     // MARK: - Constants / letiables
     let maxPoints: Int
     let decimalDigits: Int
     let lineWidth: CGFloat
     let lineColor: [Color]
     let textColor: Color
-    
-    
+
     // MARK: - Public Initializer
-    public init(maxPoints: Int, decimalDigits: Int, lineWitdh: CGFloat, lineColor: [Color], textColor: Color) {
+    public init(maxPoints: Int, decimalDigits: Int, lineWidth: CGFloat, lineColor: [Color], textColor: Color) {
         self.maxPoints = maxPoints
         self.decimalDigits = decimalDigits
-        self.lineWidth = lineWitdh
+        self.lineWidth = lineWidth
         self.lineColor = lineColor
         self.textColor = textColor
     }
