@@ -5,22 +5,25 @@
 //  Created by Volker Schmitt on 19.01.20.
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
-
+// swiftlint:disable line_length
 
 // MARK: - Import
 import SwiftUI
 
-
-//MARK: - Public Protocol
+// MARK: - Public Protocol
 ///
 ///    Protocol to add required variables for  LineGraph
 ///
 ///   **lineGraphSettings:** Graph Customization Settings
 ///
-public protocol LineGraphPotocol {
+public protocol LineGraphProtocol {
     var lineGraphSettings: LineGraphSettings { get }
 }
 
+@available(*, deprecated, renamed: "LineGraphProtocol", message: "Protocol will be removed in 1.0.0 due to a typo")
+public protocol LineGraphPotocol {
+    var lineGraphSettings: LineGraphSettings { get }
+}
 
 // MARK: - Public Struct
 /// LineGraphSettings Struct
@@ -33,18 +36,25 @@ public protocol LineGraphPotocol {
 /// - `lineColor`: Array of `[Color]` to use one or multiple colors to make the line more colorful
 /// - `borderColor`: Color of the border around the graph
 /// - `borderWidth`: Line width of the border around the graph
-///
 public struct LineGraphSettings {
-    
-    // MARK: - Constants / letiables
+
+    // MARK: - Constants / Variables
     let maxPoints: Int
     let decimalDigits: Int
     let lineWidth: CGFloat
     let lineColor: [Color]
     let textColor: Color
-    
-    
+
     // MARK: - Public Initializer
+    public init(maxPoints: Int, decimalDigits: Int, lineWidth: CGFloat, lineColor: [Color], textColor: Color) {
+        self.maxPoints = maxPoints
+        self.decimalDigits = decimalDigits
+        self.lineWidth = lineWidth
+        self.lineColor = lineColor
+        self.textColor = textColor
+    }
+
+    @available(*, deprecated, message: "Initializer will be removed in 1.0.0 due to a typo in lineWitdh variable")
     public init(maxPoints: Int, decimalDigits: Int, lineWitdh: CGFloat, lineColor: [Color], textColor: Color) {
         self.maxPoints = maxPoints
         self.decimalDigits = decimalDigits
@@ -53,3 +63,4 @@ public struct LineGraphSettings {
         self.textColor = textColor
     }
 }
+

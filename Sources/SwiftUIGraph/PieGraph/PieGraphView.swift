@@ -6,10 +6,8 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
-
 
 // MARK: - Public Struct
 ///
@@ -22,33 +20,31 @@ import SwiftUI
 /// - Requires: [PieDataPoint]
 ///
 public struct PieGraphView: View {
-    
+
     // MARK: - Declare Public Constants
     let segments: [PieSegment]
     let lineWidth: Double?
     let dataArray: [PieDataPoint]
-    
-    
+
     // MARK: - Public Initializer
     public init(dataArray: [PieDataPoint], lineWidth: Double? = nil) {
         self.lineWidth = lineWidth
         self.dataArray = dataArray
-        
+
         var segments = [PieSegment]()
         let total = dataArray.reduce(0) { $0 + $1.value }
         var startAngle = -Double.pi / 2
-        
+
         for data in dataArray {
             let amount = .pi * 2 * (data.value / total)
             let segment = PieSegment(data: data, startAngle: startAngle, amount: amount)
             segments.append(segment)
             startAngle += amount
         }
-        
+
         self.segments = segments
     }
-    
-    
+
     // MARK: - Mask
     @ViewBuilder
     var mask: some View {
@@ -58,8 +54,7 @@ public struct PieGraphView: View {
             Circle()
         }
     }
-    
-    
+
     // MARK: - Public Body
     public var body: some View {
         HStack {
@@ -70,7 +65,7 @@ public struct PieGraphView: View {
                 }
             }
             .mask(mask)
-            
+
             VStack(alignment: .leading) {
                 ForEach(dataArray, id: \.self) { item in
                     HStack(alignment: .center) {
@@ -80,7 +75,7 @@ public struct PieGraphView: View {
                         Text("\(item.value, specifier: "%.2f") \(item.valueType)")
                     }
                 }
-                
+
             }.animation(nil)
         }
     }

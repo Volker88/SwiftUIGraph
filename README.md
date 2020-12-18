@@ -4,9 +4,6 @@ SwiftUIGraph is a Swift package to display static or dynamic Graphs with SwiftUI
 
 
 
-![SwiftUI Graph](./Resources/lineGraphLight.png "SwiftUI Graph Light")
-![SwiftUI Graph](./Resources/PiGraphLight.png "SwiftUI Graph Ligh")
-
 
 
 ## Supported graphs
@@ -26,7 +23,7 @@ SwiftUIGraph is a Swift package to display static or dynamic Graphs with SwiftUI
 
 
 
-## Installation
+# Installation
 
 In Xcode 11 got to `File -> Swift Packages -> Add Package Dependency..` and paste the package url: `https://github.com/Volker88/SwiftUIGraph`
 
@@ -43,9 +40,9 @@ In Xcode 11 got to `File -> Swift Packages -> Add Package Dependency..` and past
 import SwiftUI
 import SwiftUIGraph
 
-struct ContentView: View, LineGraphPotocol {
+struct ContentView: View, LineGraphProtocol {
     @State var lineGraphPointsArray: [Double] = [-10,-5,-5,0,0,5,5,10,5,5,0,0,-5,-5]
-    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 25, decimalDigits: 2, lineWitdh: 2, lineColor: [.red,.yellow,.green], textColor: .primary)
+    var lineGraphSettings: LineGraphSettings = LineGraphSettings(maxPoints: 25, decimalDigits: 2, lineWidth: 2, lineColor: [.red,.yellow,.green], textColor: .primary)
 
     var body: some View {
         GeometryReader { g in
@@ -63,18 +60,13 @@ struct ContentView: View, LineGraphPotocol {
 * **lineColor**: Array of **[Color]** to use one or multiple colors to make the line more colorful
 * **textColor**: Color of the Values
 
-## Dark Mode
+## Preview
 
-![SwiftUI Graph](./Resources/lineGraphDark.png "SwiftUI Graph Dark")
-
+<img src="Resources/lineGraphLight.png" width="300" title="Line Graph Ligh">
+<img src="Resources/lineGraphDark.png" width="300" title="SwiftUI Graph Dark">
 
 # PiGraph
 
-## Installation
-
-In Xcode 11 got to `File -> Swift Packages -> Add Package Dependency..` and paste the package url: `https://github.com/Volker88/SwiftUIGraph`
-
-# LineGraph
 1. Import SwiftUIGraph
 3. Implement **LineGraphView()** and pass in your **lineGraphSettings** and an Array containing the Points to generate the Graph
 
@@ -99,7 +91,7 @@ struct ContentView: View {
             PieDataPoint(id: 2, value: greenAmount, valueType: "$", color: .green),
             PieDataPoint(id: 3, value: yellowAmount, valueType: "$", color: .yellow),
             PieDataPoint(id: 4, value: blueAmount, valueType: "$", color: .blue),
-            PieDataPoint(id: 5, value: orangeAmount, valueType: "$", color: .orange),
+            PieDataPoint(id: 5, value: orangeAmount, valueType: "$", color: .orange)
         ]
     }
     
@@ -114,6 +106,7 @@ struct ContentView: View {
 
 ~~~~
 
-## Dark Mode
+## Preview
 
-![SwiftUI Graph](./Resources/PiGraphDark.png "SwiftUI Graph Ligh")
+<img src="Resources/PiGraphDark.png" width="300" title="SwiftUI Graph Dark">
+<img src="Resources/PiGraphLight.png" width="300" title="Pi Graph Ligh">

@@ -6,14 +6,12 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-
 // MARK: - Import
 import SwiftUI
 
-
 // MARK: - Public Struct
 internal struct PieSegment: Shape, Identifiable {
-    
+
     // MARK: - Declare Public Constants / Variables
     let data: PieDataPoint
     var id: Int { data.id }
@@ -28,7 +26,6 @@ internal struct PieSegment: Shape, Identifiable {
         }
     }
 
-    
     // MARK: - Public Func
     func path(in rect: CGRect) -> Path {
         let radius = min(rect.width, rect.height) / 2
@@ -36,7 +33,12 @@ internal struct PieSegment: Shape, Identifiable {
 
         var path = Path()
         path.move(to: center)
-        path.addRelativeArc(center: center, radius: radius, startAngle: Angle(radians: startAngle), delta: Angle(radians: amount))
+        path.addRelativeArc(
+            center: center,
+            radius: radius,
+            startAngle: Angle(radians: startAngle),
+            delta: Angle(radians: amount)
+        )
         return path
     }
 }
