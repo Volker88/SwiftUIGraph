@@ -6,13 +6,10 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Public Struct
 internal struct PieSegment: Shape, Identifiable {
 
-    // MARK: - Declare Public Constants / Variables
     let data: PieDataPoint
     var id: Int { data.id }
     var startAngle: Double
@@ -26,7 +23,6 @@ internal struct PieSegment: Shape, Identifiable {
         }
     }
 
-    // MARK: - Public Func
     func path(in rect: CGRect) -> Path {
         let radius = min(rect.width, rect.height) / 2
         let center = CGPoint(x: rect.width / 2, y: rect.height / 2)

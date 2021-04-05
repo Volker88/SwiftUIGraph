@@ -7,15 +7,10 @@
 //
 // swiftlint:disable line_length
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Public Protocol
-///
 ///    Protocol to add required variables for  LineGraph
-///
 ///   **lineGraphSettings:** Graph Customization Settings
-///
 public protocol LineGraphProtocol {
     var lineGraphSettings: LineGraphSettings { get }
 }
@@ -25,11 +20,9 @@ public protocol LineGraphPotocol {
     var lineGraphSettings: LineGraphSettings { get }
 }
 
-// MARK: - Public Struct
 /// LineGraphSettings Struct
 ///
 /// Customize the appearance of the line graph
-///
 /// - `maxPoints`: Maximum items in the array. In case of dynamic graphs only las *n* values will be kept and shown on the graph
 /// - `decimalDigits`: Limit Decimal digits to *n* digits
 /// - `lineWidth`: Width of the graph line

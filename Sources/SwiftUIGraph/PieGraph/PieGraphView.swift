@@ -6,27 +6,19 @@
 //  Copyright © 2020 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Public Struct
-///
 ///  PieGraph View
 ///
 ///   Implement this view to show a Pie Graph
-///
-///   - Note: **lineWidth** is optional. Define **lineWidth** to get a Donut Graph.
-///
+/// - Note: **lineWidth** is optional. Define **lineWidth** to get a Donut Graph.
 /// - Requires: [PieDataPoint]
-///
 public struct PieGraphView: View {
 
-    // MARK: - Declare Public Constants
     let segments: [PieSegment]
     let lineWidth: Double?
     let dataArray: [PieDataPoint]
 
-    // MARK: - Public Initializer
     public init(dataArray: [PieDataPoint], lineWidth: Double? = nil) {
         self.lineWidth = lineWidth
         self.dataArray = dataArray
@@ -45,7 +37,6 @@ public struct PieGraphView: View {
         self.segments = segments
     }
 
-    // MARK: - Mask
     @ViewBuilder
     var mask: some View {
         if let lineWidth = lineWidth {
@@ -55,7 +46,6 @@ public struct PieGraphView: View {
         }
     }
 
-    // MARK: - Public Body
     public var body: some View {
         HStack {
             ZStack {

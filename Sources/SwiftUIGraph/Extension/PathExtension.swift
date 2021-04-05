@@ -6,25 +6,18 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Extension
 extension Path {
 
-    // MARK: - drawPath
-    ///
     /// Draw Path
     ///
     ///  Call this function to draw the graph for an Array of Doubles
-    ///
     /// - Parameters:
     ///   - graphPoints: Array with points to generate the Graph
     ///   - graphWidth: Width of the Graph to evenly distribute the X-Axis
     ///   - graphHeight: Graph Height
-    ///
     /// - Returns: Path
-    ///
     static func drawPath(graphPoints: [Double], graphWidth: Double, graphHeight: Double) -> Path {
         var path = Path()
 

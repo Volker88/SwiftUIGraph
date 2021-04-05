@@ -6,13 +6,10 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Class Definition
 class LineGraph: ObservableObject {
 
-    // MARK: - Published Variables
     @Published var transformedArray: [Double] = []
     @Published var maxValue: Double = 0
     @Published var upperQuarterValue: Double = 0
@@ -20,21 +17,12 @@ class LineGraph: ObservableObject {
     @Published var lowerQuarterValue: Double = 0
     @Published var minValue: Double = 0
 
-    // MARK: - Constants / Variables
     let graphHeight: Double
-
-    // MARK: - Initializer
-    init(lineGraphSettings: LineGraphSettings, graphHeight: Double) {
-        self.lineGraphSettings = lineGraphSettings
-        self.graphHeight = graphHeight
-    }
-
-    // MARK: - Declare Constants / Variables
     let lineGraphSettings: LineGraphSettings
     var lineGraphPointsArray: [Double] = [] {
         didSet {
             var cleanArray = lineGraphPointsArray
-            // Check for maximum elements in Array and limites it to specified quantity of items
+            // Check for maximum elements in Array and limits it to specified quantity of items
             defer {
                 transformedArray = calculateArray(array: cleanArray)
                 print("transformed \(transformedArray)")
@@ -45,15 +33,16 @@ class LineGraph: ObservableObject {
         }
     }
 
-    // MARK: - Calculate Array
+    init(lineGraphSettings: LineGraphSettings, graphHeight: Double) {
+        self.lineGraphSettings = lineGraphSettings
+        self.graphHeight = graphHeight
+    }
+
     ///   Calculate Array
     ///
     ///   Calculates the array based on the max. graph height to scale the graph
-    ///
     /// - Parameter _array: `[Double]`
-    ///
     /// - Returns: transformed `[Double]` Array
-    ///
     func calculateArray(array: [Double]) -> [Double] {
         let inputArray = array
 

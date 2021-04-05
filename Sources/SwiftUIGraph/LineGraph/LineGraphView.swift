@@ -6,35 +6,27 @@
 //  Copyright © 2019 Volker Schmitt. All rights reserved.
 //
 
-// MARK: - Import
 import SwiftUI
 
-// MARK: - Public Struct
-///
 ///  LineGraph View
 ///
 ///   Implement this view to show a line Graph
-///
 /// - Parameters:
 ///   - `lineGraphPointsArray`: Array to generate the Graph
 ///   - `lineGraphSettings`: Settings for Graph Customization
 ///   - `graphWidth`: Graph Width
 ///   - `graphHeight`: Graph Height
-///
 public struct LineGraphView: View {
 
-    // MARK: - Observed / @State Variables
     @ObservedObject var lineGraph: LineGraph
     @State private var minValue: Double = -10
     @State private var maxValue: Double = 10
     @State private var transformedArray: [Double] = [0]
 
-    // MARK: - Declare Private Variables
     private var lineGraphSettings: LineGraphSettings
     private var graphWidth: CGFloat
     private var graphHeight: CGFloat
 
-    // MARK: - Public Initializer
     public init(
         lineGraphPointsArray: [Double],
         lineGraphSettings: LineGraphSettings,
@@ -48,11 +40,8 @@ public struct LineGraphView: View {
         self.lineGraph.lineGraphPointsArray = lineGraphPointsArray
     }
 
-    // MARK: - Public Body
     public var body: some View {
-
-        // MARK: - Return
-        return HStack(spacing: 3) {
+        HStack(spacing: 3) {
             VStack {
                 Group {
                     Text("\(lineGraph.maxValue, specifier: "%.\(lineGraphSettings.decimalDigits)f")")
@@ -120,7 +109,6 @@ public struct LineGraphView: View {
     }
 }
 
-// MARK: - Preview
 struct LineGraphView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
