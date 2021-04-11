@@ -1,16 +1,14 @@
 //
-//  DoubleExtension.swift
+//  Extension+Double.swift
 //  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 18.01.20.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Copyright © 2021 Volker Schmitt. All rights reserved.
 //
 
 import Foundation
 
 extension Double {
-
-    // MARK: - Round
     /// Round Doubles
     ///
     ///  Call this function to round `Double` to X decimal digits

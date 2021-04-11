@@ -3,7 +3,7 @@
 //  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 30.12.19.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Copyright © 2021 Volker Schmitt. All rights reserved.
 //
 
 import SwiftUI

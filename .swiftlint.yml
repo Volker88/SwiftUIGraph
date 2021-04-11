@@ -5,3 +5,4 @@ identifier_name:
 disabled_rules:
   - multiple_closures_with_trailing_closure
   - no_space_in_method_call
+  - switch_case_alignment
