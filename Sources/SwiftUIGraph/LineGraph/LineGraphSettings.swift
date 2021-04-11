@@ -3,7 +3,7 @@
 //  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 19.01.20.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Copyright © 2021 Volker Schmitt. All rights reserved.
 //
 // swiftlint:disable line_length
 
@@ -47,7 +47,7 @@ public struct LineGraphSettings {
         self.textColor = textColor
     }
 
-    @available(*, deprecated, message: "Initializer will be removed in 1.0.0 due to a typo in lineWitdh variable")
+    @available(*, deprecated, message: "Initializer will be removed in 1.0.0 due to a typo in lineWitdh variable") // swiftlint:disable:this line_length
     public init(maxPoints: Int, decimalDigits: Int, lineWitdh: CGFloat, lineColor: [Color], textColor: Color) {
         self.maxPoints = maxPoints
         self.decimalDigits = decimalDigits
@@ -56,4 +56,3 @@ public struct LineGraphSettings {
         self.textColor = textColor
     }
 }
-

@@ -1,15 +1,14 @@
 //
-//  PathExtension.swift
+//  Extension+Path.swift
 //  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 18.01.20.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Copyright © 2021 Volker Schmitt. All rights reserved.
 //
 
 import SwiftUI
 
 extension Path {
-
     /// Draw Path
     ///
     ///  Call this function to draw the graph for an Array of Doubles

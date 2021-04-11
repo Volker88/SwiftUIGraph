@@ -9,8 +9,9 @@ SwiftUIGraph is a Swift package to display static or dynamic Graphs with SwiftUI
 ## Supported graphs
 
 * Line Graphs
-* Pi Graph
+* Pie Graph
 * Donut Graph
+* Bar Graph
 
 ## Supported OS
 
@@ -65,10 +66,10 @@ struct ContentView: View, LineGraphProtocol {
 <img src="Resources/lineGraphLight.png" width="300" title="Line Graph Ligh">
 <img src="Resources/lineGraphDark.png" width="300" title="SwiftUI Graph Dark">
 
-# PiGraph
+# PieGraph
 
 1. Import SwiftUIGraph
-3. Implement **LineGraphView()** and pass in your **lineGraphSettings** and an Array containing the Points to generate the Graph
+2. Implement **PieGraphView()** and pass in your Data Points to generate the Graph
 
 
 ### Example
@@ -106,7 +107,55 @@ struct ContentView: View {
 
 ~~~~
 
+## Customization
+
+* **lineWidth**: Pass in a value to generate a donut graph
+
 ## Preview
 
 <img src="Resources/PiGraphDark.png" width="300" title="SwiftUI Graph Dark">
 <img src="Resources/PiGraphLight.png" width="300" title="Pi Graph Ligh">
+
+# BarGraph
+
+1. Import SwiftUIGraph
+2. Implement **BarGraphView()** and pass in your Data Points to generate the Graph
+
+
+### Example
+
+~~~~swift
+import SwiftUI
+import SwiftUIGraph
+
+struct ContentView: View {
+    @State private var redAmount = Double.random(in: 10...100)
+    @State private var yellowAmount = Double.random(in: 10...100)
+    @State private var greenAmount = Double.random(in: 10...100)
+    @State private var blueAmount = Double.random(in: 10...100)
+
+    var data: [BarDataPoint] {
+        [
+            BarDataPoint(id: 1, value: redAmount, color: .red, title: "Yes"),
+            BarDataPoint(id: 2, value: yellowAmount, color: .yellow, title: "Maybe"),
+            BarDataPoint(id: 3, value: greenAmount, color: .green, title: "No"),
+            BarDataPoint(id: 4, value: blueAmount, color: .blue, title: "N/A")
+        ]
+    }
+
+    var body: some View {
+        BarGraphView(dataPoints: data, horizontalLines: 10, sortedBy: .valueAscending)
+    }
+}
+
+~~~~
+
+## Customization
+
+* **horizontalLines**: default 10
+* **sortedBy**: optional, if nothing passed the order of the array will be taken
+
+## Preview
+
+<img src="Resources/BarGraphDark.png" width="300" title="SwiftUI Graph Dark">
+<img src="Resources/BarGraphLight.png" width="300" title="Pi Graph Ligh">

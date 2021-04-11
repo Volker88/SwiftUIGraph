@@ -10,7 +10,7 @@ import SwiftUI
 
 ///  PieGraph View
 ///
-///   Implement this view to show a Pie Graph
+///   Implement this View to show a Pie Graph
 /// - Note: **lineWidth** is optional. Define **lineWidth** to get a Donut Graph.
 /// - Requires: [PieDataPoint]
 public struct PieGraphView: View {
@@ -67,6 +67,38 @@ public struct PieGraphView: View {
                 }
 
             }.animation(nil)
+        }
+    }
+}
+
+struct PieGraphView_Previews: PreviewProvider {
+    static var dataPoints: [PieDataPoint] {
+        var data = [PieDataPoint]()
+        for index in 1..<Int.random(in: 1...5) {
+            let value = Double.random(in: 0...100).rounded(toPlaces: 2)
+            data.append(
+                PieDataPoint(
+                    id: index,
+                    value: value,
+                    valueType: "€",
+                    color: Color(
+                        red: .random(in: 0...1),
+                        green: .random(in: 0...1),
+                        blue: .random(in: 0...1)
+                    )
+                )
+            )
+        }
+        return data
+    }
+
+    static var previews: some View {
+        ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
+            VStack {
+                PieGraphView(dataArray: dataPoints)
+                PieGraphView(dataArray: dataPoints, lineWidth: 20)
+            }
+            .colorScheme(scheme)
         }
     }
 }

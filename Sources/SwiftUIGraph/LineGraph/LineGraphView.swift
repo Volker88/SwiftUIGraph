@@ -3,14 +3,14 @@
 //  SwiftUIGraph
 //
 //  Created by Volker Schmitt on 30.12.19.
-//  Copyright © 2019 Volker Schmitt. All rights reserved.
+//  Copyright © 2021 Volker Schmitt. All rights reserved.
 //
 
 import SwiftUI
 
 ///  LineGraph View
 ///
-///   Implement this view to show a line Graph
+///   Implement this View to show a Line Graph
 /// - Parameters:
 ///   - `lineGraphPointsArray`: Array to generate the Graph
 ///   - `lineGraphSettings`: Settings for Graph Customization
@@ -110,11 +110,34 @@ public struct LineGraphView: View {
 }
 
 struct LineGraphView_Previews: PreviewProvider {
+    static var dataPoints: [Double] {
+        var data = [Double]()
+        for _ in 1..<Int.random(in: 1...1000) {
+            let value = Double.random(in: 0...1000).rounded(toPlaces: 2)
+            data.append(
+                value
+            )
+        }
+        return data
+    }
+
+    static var settings = LineGraphSettings(
+        maxPoints: Int.random(in: 10...100),
+        decimalDigits: 3,
+        lineWidth: 1,
+        lineColor: [.red, .green],
+        textColor: .primary
+    )
+
     static var previews: some View {
         ForEach([ColorScheme.light, .dark], id: \.self) { scheme in
-            LineGraphView(lineGraphPointsArray: [-10, -9, -8, 0, 7, 8, 9, 10], lineGraphSettings: LineGraphSettings(maxPoints: 10, decimalDigits: 3, lineWidth: 1, lineColor: [.red, .green], textColor: .primary), graphWidth: 350, graphHeight: 350) // swiftlint:disable:this line_length
-                .colorScheme(scheme)
-                .previewLayout(.sizeThatFits)
+            LineGraphView(
+                lineGraphPointsArray: dataPoints,
+                lineGraphSettings: settings,
+                graphWidth: 350,
+                graphHeight: 350
+            )
+            .colorScheme(scheme)
         }
     }
 }
